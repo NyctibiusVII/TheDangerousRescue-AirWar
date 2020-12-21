@@ -36,7 +36,7 @@ h1 {
 
 
 /* Player */
-#jogador {
+#player {
 	width: 256px;
     height: 66px;
     
@@ -46,7 +46,7 @@ h1 {
     
     background-image:url(../assets/images/apache.png);
 }
-#inimigo1 {
+#enemy1 {
 	width: 256px;
     height: 66px;
     
@@ -56,7 +56,7 @@ h1 {
     
 	background-image:url(../assets/images/inimigo1.png);
 }
-#inimigo2 {
+#enemy2 {
 	width: 165px;
     height: 70px;
     
@@ -66,7 +66,7 @@ h1 {
     
 	background-image: url(../assets/images/inimigo2.png);
 }
-#amigo {
+#friend {
 	width: 44px;
     height: 51px;
     
