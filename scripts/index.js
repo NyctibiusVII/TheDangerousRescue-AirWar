@@ -36,6 +36,18 @@ function start() {
         enemyPositionX: undefined,
         enemyPositionY: parseInt(Math.random() * 334),
         enemyValueRandomPositionY: 334,
+        // Shoot //
+        canShoot: true,
+        executeShootingTime: 30,
+        shootingVelocity: 15,
+        shootingRangeLimit: 900,
+        topShoot: undefined,
+        shootPositionX: undefined,
+        topPlayer: "top",
+        topAlignment: 40,
+        leftPlayer: "left",
+        rightAlignment: 190,
+        playerPositionX: undefined,
     }
     game.timer = setInterval(loop, game.intervalLoop);
 
@@ -77,6 +89,7 @@ function start() {
             }
         }
         if (game.pressed[keyboardKey.D]) {
+            shoot();
         }
     }
 
@@ -86,6 +99,34 @@ function start() {
 
         if (game.enemyPositionX > game.limitPositionFriend) {
             $("#friend").css(game.directionFriend, game.resetPositionFriend);
+        }
+    }
+
+    function shoot() {
+        if (game.canShoot === true) {
+            game.canShoot = false;
+
+            topP = parseInt($("#player").css(game.topPlayer))
+            game.playerPositionX = parseInt($("#player").css(game.leftPlayer))
+            game.topShoot = topP + game.topAlignment;                            // Alinhando tiro com uma margem no top
+            game.shootPositionX = game.playerPositionX + game.rightAlignment;   // Alinhando tiro a direita
+            $("#backgroundGame").append("<div id='shoot'></div");
+            $("#shoot").css(game.topPlayer, game.topShoot);
+            $("#shoot").css(game.leftPlayer, game.shootPositionX);
+
+            var shootingTime = window.setInterval(executeShooting, game.executeShootingTime);
+        }
+
+        function executeShooting() {
+            game.playerPositionX = parseInt($("#shoot").css(game.leftPlayer));
+            $("#shoot").css(game.leftPlayer, game.playerPositionX + game.shootingVelocity);
+
+            if (game.playerPositionX > game.shootingRangeLimit) {
+                window.clearInterval(shootingTime);
+                shootingTime = null;
+                $("#shoot").remove();
+                game.canShoot = true;
+            }
         }
     }
 

@@ -85,12 +85,14 @@ h1 {
     text-align: center;
     margin: 100px auto 0;
 	padding: 10px;
-    /*margin-left:auto;
-    margin-right:auto;
- 	margin-top:100px;*/
 }
-
-
+#shoot {
+	width: 50px;
+	height: 8px;
+	
+	position: absolute;
+	background-image: url(../assets/images/shoot.png);
+}
 
 /* Animation Helicopter */
 @keyframes helicopterAnimation {
