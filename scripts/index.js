@@ -65,6 +65,8 @@ function start() {
         movePlayer();
         moveFriend();
 
+        collision();
+
         moveEnemy1();
         moveEnemy2();
 
@@ -128,6 +130,12 @@ function start() {
                 game.canShoot = true;
             }
         }
+    }
+
+    function collision() {
+        var collision_1 = ($("#player").collision($("#enemy1")));
+        
+        
     }
 
     function moveEnemy1() {
