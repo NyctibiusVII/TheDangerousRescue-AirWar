@@ -5,20 +5,45 @@ function start() {
 	$("#backgroundGame").append("<div id='enemy1' class='enemy1AnimationClass'></div>");
 	$("#backgroundGame").append("<div id='enemy2'></div>");
 	$("#backgroundGame").append("<div id='friend' class='friendAnimationClass'></div>");
-    
-    var game = {}
-    const interval = game.interval = 30;
-    const velocity = game.velocity = 1;
-    var backgroundDirection = game.backgroundDirection = "left";
-      
-    game.timer = setInterval(loop, interval);
+
+    var game = {
+        interval: 30,
+        velocity: 1,
+        backgroundDirection: "left",
+        amountOfPixelsMoved: 10
+    }
+    game.timer = setInterval(loop, game.interval);
+
+    var keyboardKey = {
+        W: 87,
+        S: 83,
+        D: 68
+    }
+    game.pressed = [];
+
+    $(document).keydown((e) => { game.pressed[e.which] = true; });
+    $(document).keyup((e) => { game.pressed[e.which] = false; });
 
     function loop() {
+        movePlayer();
         backgroundAnimation();
     }
-	
+
+    function movePlayer() {
+        if (game.pressed[keyboardKey.W]) {
+            var topo = parseInt($("#player").css("top"));
+            $("#player").css("top",topo - game.amountOfPixelsMoved);
+        }
+        if (game.pressed[keyboardKey.S]) {
+            var topo = parseInt($("#player").css("top"));
+            $("#player").css("top",topo + game.amountOfPixelsMoved);
+        }
+        if (game.pressed[keyboardKey.D]) {
+        }
+    }
+
 	function backgroundAnimation() {
-        backgroundDirection = parseInt($("#backgroundGame").css("background-position"));
-        $("#backgroundGame").css("background-position", backgroundDirection - velocity);
+        game.backgroundDirection = parseInt($("#backgroundGame").css("background-position"));
+        $("#backgroundGame").css("background-position", game.backgroundDirection - game.velocity);
     }
 }
