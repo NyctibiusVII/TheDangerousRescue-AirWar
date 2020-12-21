@@ -6,7 +6,7 @@
 
 
 body {
-	background-image: url(../assets/images/fundo.jpg);
+	background-image: url(../assets/images/background.jpg);
 }
 
 
@@ -23,7 +23,7 @@ body {
 	width: 950px;
 	height: 630px;
 	
-	background-image: url(../assets/images/fundo_game.jpg);
+	background-image: url(../assets/images/background_game.jpg);
 	border-color:#fff;
 	border-style: solid;
 }
@@ -54,7 +54,7 @@ h1 {
 	left: 689px;
     top: 253px;
     
-	background-image:url(../assets/images/inimigo1.png);
+	background-image:url(../assets/images/enemy1.png);
 }
 #enemy2 {
 	width: 165px;
@@ -64,7 +64,7 @@ h1 {
 	left: 775px;
     top: 447px;
     
-	background-image: url(../assets/images/inimigo2.png);
+	background-image: url(../assets/images/enemy2.png);
 }
 #friend {
 	width: 44px;
@@ -74,7 +74,7 @@ h1 {
 	left: 10px;
     top: 464px;
     
-	background-image: url(../assets/images/amigo.png);
+	background-image: url(../assets/images/friend.png);
 }
 #startGame {
 	width: 350px;
@@ -88,4 +88,75 @@ h1 {
     /*margin-left:auto;
     margin-right:auto;
  	margin-top:100px;*/
+}
+
+
+
+/* Animation */
+@keyframes helicopterAnimation {
+	from { background-position:0px;    }
+	  to { background-position:-512px; }
+}
+@-webkit-keyframes helicopterAnimation {
+   	from { background-position:0px;     }
+   	  to { background-position: -512px; }
+}
+@-moz-keyframes helicopterAnimation {
+   	from { background-position:0px;     }
+   	  to { background-position: -512px; }
+}
+@-ms-keyframes helicopterAnimation {
+   	from { background-position:0px;     }
+   	  to { background-position: -512px; }
+}
+@-o-keyframes helicopterAnimation {
+   	from { background-position:0px;     }
+   	  to { background-position: -512px; }
+}
+
+/* Animation */
+@keyframes friendAnimation {
+	from { background-position:0px;    }
+	  to { background-position:-528px; }
+}
+@-webkit-keyframes friendAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -528px; }
+}
+@-moz-keyframes friendAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -528px; }
+}
+@-ms-keyframes friendAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -528px; }
+}
+@-o-keyframes friendAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -528px; }
+}
+
+.playerAnimationClass {
+	background-image: url(../assets/images/helicoptero.png);
+	animation: helicopterAnimation .5s steps(2) infinite;
+	-webkit-animation: helicopterAnimation .5s steps(2) infinite;
+	-moz-animation: helicopterAnimation .5s steps(2) infinite;
+	-ms-animation: helicopterAnimation .5s steps(2) infinite;
+	-o-animation: helicopterAnimation .5s steps(2) infinite;
+}
+.enemy1AnimationClass {
+    background-image:url(../assets/images/enemy1.png);
+    animation: helicopterAnimation .5s steps(2) infinite;
+    -webkit-animation: helicopterAnimation .5s steps(2) infinite;
+    -moz-animation: helicopterAnimation .5s steps(2) infinite;
+    -ms-animation: helicopterAnimation .5s steps(2) infinite;
+    -o-animation: helicopterAnimation .5s steps(2) infinite;
+}
+.friendAnimationClass {
+	background-image:url(../assets/images/friend.png);
+	animation: friendAnimation .9s steps(12) infinite;
+	-webkit-animation: friendAnimation .9s steps(12) infinite;
+	-moz-animation: friendAnimation .9s steps(12) infinite;
+	-ms-animation: friendAnimation .9s steps(12) infinite;
+	-o-animation: friendAnimation .9s steps(12) infinite;
 }
