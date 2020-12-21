@@ -10,16 +10,32 @@ function start() {
         intervalLoop: 30,
         topLimit: 0,
         bottomLimit: 434,
-        
+        // Background //
         backgroundDirection: "left",
         velocityOfBackground: 1,
         movingFrom_n_To_n_pixels: 10,
-        
-        directionEnemy: "left",
-        enemyVelocity: 5,
+        // Friend //
+        positionFriend: "left",
+        limitPositionFriend: 906,
+        resetPositionFriend: 0,
+        directionFriend: "left",
+        friendVelocity: 1,
+        // Enemy 1 //
+        positionEnemy_1: "left",
+        limitPositionEnemy_1: 0,
+        resetPositionEnemy_1: 694,
+        directionEnemy_1: "left",
+        enemyVelocity_1: 5,
+        // Enemy 2 //
+        positionEnemy_2: "left",
+        limitPositionEnemy_2: 0,
+        resetPositionEnemy_2: 775,
+        directionEnemy_2: "left",
+        enemyVelocity_2: 3,
+        // Enemies //
         enemyPositionX: undefined,
         enemyPositionY: parseInt(Math.random() * 334),
-        startingPositionOnTheEnemy: 694,
+        enemyValueRandomPositionY: 334,
     }
     game.timer = setInterval(loop, game.intervalLoop);
 
@@ -35,7 +51,11 @@ function start() {
 
     function loop() {
         movePlayer();
+        moveFriend();
+
         moveEnemy1();
+        moveEnemy2();
+
         backgroundAnimation();
     }
 
@@ -60,15 +80,33 @@ function start() {
         }
     }
 
+    function moveFriend() {
+        game.enemyPositionX = parseInt($("#friend").css(game.positionFriend));
+        $("#friend").css(game.directionFriend, game.enemyPositionX + game.friendVelocity);
+
+        if (game.enemyPositionX > game.limitPositionFriend) {
+            $("#friend").css(game.directionFriend, game.resetPositionFriend);
+        }
+    }
+
     function moveEnemy1() {
-        game.enemyPositionX = parseInt($("#enemy1").css(game.directionEnemy));
-        $("#enemy1").css(game.directionEnemy,game.enemyPositionX - game.enemyVelocity);
+        game.enemyPositionX = parseInt($("#enemy1").css(game.positionEnemy_1));
+        $("#enemy1").css(game.directionEnemy_1,game.enemyPositionX - game.enemyVelocity_1);
         $("#enemy1").css("top",game.enemyPositionY);
         
-        if (game.enemyPositionX <= 0) {
-            game.enemyPositionY = parseInt(Math.random() * 334);
-            $("#enemy1").css(game.directionEnemy, game.startingPositionOnTheEnemy);
+        if (game.enemyPositionX <= game.limitPositionEnemy_1) {
+            game.enemyPositionY = parseInt(Math.random() * game.enemyValueRandomPositionY);
+            $("#enemy1").css(game.directionEnemy_1, game.resetPositionEnemy_1);
             $("#enemy1").css("top",game.enemyPositionY);
+        }
+    }
+
+    function moveEnemy2() {
+        game.enemyPositionX = parseInt($("#enemy2").css(game.positionEnemy_2));
+        $("#enemy2").css(game.directionEnemy_2, game.enemyPositionX - game.enemyVelocity_2);
+
+        if (game.enemyPositionX <= game.limitPositionEnemy_2) {
+            $("#enemy2").css(game.directionEnemy_2, game.resetPositionEnemy_2);
         }
     }
 
