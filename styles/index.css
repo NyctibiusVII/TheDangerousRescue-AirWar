@@ -92,7 +92,7 @@ h1 {
 
 
 
-/* Animation */
+/* Animation Helicopter */
 @keyframes helicopterAnimation {
 	from { background-position:0px;    }
 	  to { background-position:-512px; }
@@ -114,7 +114,7 @@ h1 {
    	  to { background-position: -512px; }
 }
 
-/* Animation */
+/* Animation Friend */
 @keyframes friendAnimation {
 	from { background-position:0px;    }
 	  to { background-position:-528px; }
