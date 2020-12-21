@@ -24,12 +24,14 @@ function start() {
         positionEnemy_1: "left",
         limitPositionEnemy_1: 0,
         resetPositionEnemy_1: 694,
+        direcTopEnemy_1: "top",
         directionEnemy_1: "left",
         enemyVelocity_1: 5,
         // Enemy 2 //
         positionEnemy_2: "left",
         limitPositionEnemy_2: 0,
         resetPositionEnemy_2: 775,
+        direcTopEnemy_2: "top",
         directionEnemy_2: "left",
         enemyVelocity_2: 3,
         // Enemies //
@@ -135,7 +137,33 @@ function start() {
     function collision() {
         var collision_1 = ($("#player").collision($("#enemy1")));
         
+        if (collision_1.length > 0) {
+		
+            enemy1X = parseInt($("#enemy1").css(game.directionEnemy_1));
+            enemy1Y = parseInt($("#enemy1").css(game.direcTopEnemy_2));
+            explosion1(enemy1X,enemy1Y);
         
+            //positionY = parseInt(Math.random() * game.enemyValueRandomPositionY);
+            $("#enemy1").css(game.directionEnemy_1, game.resetPositionEnemy_1);
+            $("#enemy1").css(game.direcTopEnemy_2, game.enemyPositionY);
+        }
+    }
+
+    function explosion1 (enemy1X,enemy1Y) {
+        $("#backgroundGame").append("<div id='explosion1'></div");
+        $("#explosion1").css("background-image", "url(./assets/images/explosion.png)");
+
+        var div = $("#explosion1");
+        div.css(game.direcTopEnemy_1, enemy1Y);
+        div.css(game.directionEnemy_1, enemy1X);
+        div.animate({width:200, opacity:0}, "slow");
+        
+        var explosionTime = window.setInterval(removeExplosion, 1000);
+        function removeExplosion() {
+            div.remove();
+            window.clearInterval(explosionTime);
+            explosionTime = null;
+        }
     }
 
     function moveEnemy1() {
