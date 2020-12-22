@@ -8,6 +8,13 @@ function start() {
     $("#backgroundGame").append("<div id='scoreboard'></div>");
     $("#backgroundGame").append("<div id='energy'></div>");
 
+    var soundShooting = document.getElementById("soundShooting");
+    var explosionSound = document.getElementById("explosionSound");
+    var music = document.getElementById("music");
+    var soundGameOver = document.getElementById("soundGameOver");
+    var lostSound = document.getElementById("lostSound");
+    var soundRescue = document.getElementById("soundRescue");
+
     var game = {
         scores: 0,
         saved: 0,
@@ -81,6 +88,8 @@ function start() {
 
 
     function loop() {
+        music.addEventListener("ended", function(){ music.currentTime = 0; music.play(); }, false);
+        music.play();
         backgroundAnimation();
 
         movePlayer();
@@ -130,6 +139,7 @@ function start() {
 
     function shoot() {
         if (game.canShoot === true) {
+            soundShooting.play();
             game.canShoot = false;
 
             topP = parseInt($("#player").css(game.topPlayer))
@@ -211,6 +221,7 @@ function start() {
             repositionEnemy2();
         }
         if (collision_5.length > 0) {
+            soundRescue.play();
             game.saved++;
             repositionFriend();
             $("#friend").remove();
@@ -229,6 +240,7 @@ function start() {
 
 
     function explosion1(enemy1X, enemy1Y) {
+        explosionSound.play();
         $("#backgroundGame").append("<div id='explosion1'></div");
         $("#explosion1").css("background-image", "url(./assets/images/explosion.png)");
 
@@ -245,6 +257,7 @@ function start() {
         }
     }
     function explosion2(enemy1X, enemy1Y) {
+        explosionSound.play();
         $("#backgroundGame").append("<div id='explosion2'></div");
         $("#explosion2").css("background-image", "url(./assets/images/explosion.png)");
         
@@ -261,6 +274,7 @@ function start() {
         }
     }
     function explosion3(friendX, friendY) {
+        lostSound.play();
         $("#backgroundGame").append("<div id='explosion3' class='friendDeadAnimationClass'></div");
         $("#explosion3").css(game.directionFriend, friendX);
         $("#explosion3").css(game.direcTopFriend, friendY);
