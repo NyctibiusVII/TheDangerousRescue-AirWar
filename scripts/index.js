@@ -5,8 +5,15 @@ function start() {
 	$("#backgroundGame").append("<div id='enemy1' class='enemy1AnimationClass'></div>");
 	$("#backgroundGame").append("<div id='enemy2'></div>");
 	$("#backgroundGame").append("<div id='friend' class='friendAnimationClass'></div>");
+    $("#backgroundGame").append("<div id='scoreboard'></div>");
 
     var game = {
+        scores: 0,
+        saved: 0,
+        lost: 0,
+
+        pointsForTheEnemy_1: 100,
+        pointsForTheEnemy_2: 50,
         endOfTheGame: false,
         intervalLoop: 30,
         topLimit: 0,
@@ -69,15 +76,16 @@ function start() {
 
 
     function loop() {
+        backgroundAnimation();
+
         movePlayer();
         moveFriend();
-
-        collision();
 
         moveEnemy1();
         moveEnemy2();
 
-        backgroundAnimation();
+        collision();
+        scoreboard();
     }
 
 
@@ -167,6 +175,8 @@ function start() {
             repositionEnemy2();
         }
         if (collision_3.length > 0) {
+            game.scores =+ game.pointsForTheEnemy_1;
+
             enemy1X = parseInt($("#enemy1").css(game.directionEnemy_1));
             enemy1Y = parseInt($("#enemy1").css(game.direcTopEnemy_1));
             explosion1(enemy1X,enemy1Y);
@@ -178,6 +188,8 @@ function start() {
             $("#enemy1").css(game.direcTopEnemy_1, game.enemyPositionY);
         }
         if (collision_4.length > 0) {
+            game.scores =+ game.pointsForTheEnemy_2;
+
             enemy2X = parseInt($("#enemy2").css(game.directionEnemy_2));
             enemy2Y = parseInt($("#enemy2").css(game.direcTopEnemy_2));
             $("#enemy2").remove();
@@ -187,10 +199,12 @@ function start() {
             repositionEnemy2();
         }
         if (collision_5.length > 0) {
+            game.saved++;
             repositionFriend();
             $("#friend").remove();
         }
         if (collision_6.length > 0) {
+            game.lost++;
             friendX = parseInt($("#friend").css(game.directionFriend));
             friendY = parseInt($("#friend").css(game.direcTopFriend));
             explosion3(friendX, friendY);
@@ -260,7 +274,6 @@ function start() {
             }
         }
     }
-
 	function repositionFriend() {
         var friendTime = window.setInterval(reposition6, 6000);
 
@@ -301,5 +314,9 @@ function start() {
 	function backgroundAnimation() {
         game.backgroundDirection = parseInt($("#backgroundGame").css("background-position"));
         $("#backgroundGame").css("background-position", game.backgroundDirection - game.velocityOfBackground);
+    }
+
+    function scoreboard() {
+        $("#scoreboard").html("<h2> Pontos: " + game.scores + " Salvos: " + game.saved + " Perdidos: " + game.lost + "</h2>");
     }
 }
