@@ -7,6 +7,7 @@ function start() {
 	$("#backgroundGame").append("<div id='friend' class='friendAnimationClass'></div>");
 
     var game = {
+        endOfTheGame: false,
         intervalLoop: 30,
         topLimit: 0,
         bottomLimit: 434,
@@ -50,6 +51,7 @@ function start() {
         leftPlayer: "left",
         rightAlignment: 190,
         playerPositionX: undefined,
+        resetPositionShoot: 950,
     }
     game.timer = setInterval(loop, game.intervalLoop);
 
@@ -63,6 +65,8 @@ function start() {
     $(document).keydown((e) => { game.pressed[e.which] = true; });
     $(document).keyup((e) => { game.pressed[e.which] = false; });
 
+
+
     function loop() {
         movePlayer();
         moveFriend();
@@ -75,28 +79,29 @@ function start() {
         backgroundAnimation();
     }
 
+
+
     function movePlayer() {
         if (game.pressed[keyboardKey.W]) {
-            let top = parseInt($("#player").css("top"));
-            $("#player").css("top",top - game.movingFrom_n_To_n_pixels);
+            let top = parseInt($("#player").css(game.topPlayer));
+            $("#player").css(game.topPlayer,top - game.movingFrom_n_To_n_pixels);
 
             if (top <= game.topLimit) {
-                $("#player").css("top",top + game.movingFrom_n_To_n_pixels);
+                $("#player").css(game.topPlayer,top + game.movingFrom_n_To_n_pixels);
             }
         }
         if (game.pressed[keyboardKey.S]) {
-            let top = parseInt($("#player").css("top"));
-            $("#player").css("top",top + game.movingFrom_n_To_n_pixels);
+            let top = parseInt($("#player").css(game.topPlayer));
+            $("#player").css(game.topPlayer,top + game.movingFrom_n_To_n_pixels);
 
             if (top >= game.bottomLimit) {
-                $("#player").css("top",top - game.movingFrom_n_To_n_pixels);
+                $("#player").css(game.topPlayer,top - game.movingFrom_n_To_n_pixels);
             }
         }
         if (game.pressed[keyboardKey.D]) {
             shoot();
         }
     }
-
     function moveFriend() {
         game.enemyPositionX = parseInt($("#friend").css(game.positionFriend));
         $("#friend").css(game.directionFriend, game.enemyPositionX + game.friendVelocity);
@@ -106,6 +111,8 @@ function start() {
         }
     }
 
+
+
     function shoot() {
         if (game.canShoot === true) {
             game.canShoot = false;
@@ -113,7 +120,7 @@ function start() {
             topP = parseInt($("#player").css(game.topPlayer))
             game.playerPositionX = parseInt($("#player").css(game.leftPlayer))
             game.topShoot = topP + game.topAlignment;                            // Alinhando tiro com uma margem no top
-            game.shootPositionX = game.playerPositionX + game.rightAlignment;   // Alinhando tiro a direita
+            game.shootPositionX = game.playerPositionX + game.rightAlignment;    // Alinhando tiro a direita
             $("#backgroundGame").append("<div id='shoot'></div");
             $("#shoot").css(game.topPlayer, game.topShoot);
             $("#shoot").css(game.leftPlayer, game.shootPositionX);
@@ -133,31 +140,68 @@ function start() {
             }
         }
     }
-
     function collision() {
-        var collision_1 = ($("#player").collision($("#enemy1")));
+        var collision_1 = ($("#player").collision($("#enemy1"))); // Player => Elipóptero       | 🚁X🚁
+        var collision_2 = ($("#player").collision($("#enemy2"))); // Player => Caminhão         | 🚁X🚛
+        var collision_3 = ($("#shoot").collision($("#enemy1")));  // Player/Shoot => Elipóptero | 🔫X🚁
+        var collision_4 = ($("#shoot").collision($("#enemy2")));  // Player/Shoot => Caminhão   | 🔫X🚛
+        var collision_5 = ($("#player").collision($("#friend"))); // Player => Amigo            | 🚁X🏃🏻‍♂️
+        var collision_6 = ($("#enemy2").collision($("#friend"))); // Elipóptero => Amigo        | 🚁X🏃🏻‍♂️
         
         if (collision_1.length > 0) {
-		
             enemy1X = parseInt($("#enemy1").css(game.directionEnemy_1));
-            enemy1Y = parseInt($("#enemy1").css(game.direcTopEnemy_2));
+            enemy1Y = parseInt($("#enemy1").css(game.direcTopEnemy_1));
             explosion1(enemy1X,enemy1Y);
         
-            //positionY = parseInt(Math.random() * game.enemyValueRandomPositionY);
+            game.enemyPositionY = parseInt(Math.random() * game.enemyValueRandomPositionY);
             $("#enemy1").css(game.directionEnemy_1, game.resetPositionEnemy_1);
-            $("#enemy1").css(game.direcTopEnemy_2, game.enemyPositionY);
+            $("#enemy1").css(game.direcTopEnemy_1, game.enemyPositionY);
+        }
+        if (collision_2.length > 0) {
+            enemy2X = parseInt($("#enemy2").css(game.directionEnemy_2));
+            enemy2Y = parseInt($("#enemy2").css(game.direcTopEnemy_2));
+            explosion2(enemy2X,enemy2Y);
+
+            $("#enemy2").remove();
+            repositionEnemy2();
+        }
+        if (collision_3.length > 0) {
+            enemy1X = parseInt($("#enemy1").css(game.directionEnemy_1));
+            enemy1Y = parseInt($("#enemy1").css(game.direcTopEnemy_1));
+            explosion1(enemy1X,enemy1Y);
+
+            $("#shoot").css(game.leftPlayer, game.resetPositionShoot);
+
+            game.enemyPositionY = parseInt(Math.random() * game.enemyValueRandomPositionY);
+            $("#enemy1").css(game.directionEnemy_1, game.resetPositionEnemy_1);
+            $("#enemy1").css(game.direcTopEnemy_1, game.enemyPositionY);
+        }
+        if (collision_4.length > 0) {
+            enemy2X = parseInt($("#enemy2").css(game.directionEnemy_2));
+            enemy2Y = parseInt($("#enemy2").css(game.direcTopEnemy_2));
+            $("#enemy2").remove();
+            explosion2(enemy2X, enemy2Y);
+
+            $("#shoot").css(game.leftPlayer, game.resetPositionShoot);
+            repositionEnemy2();
+        }
+        if (collision_5.length > 0) {
+            repositionFriend();
+            $("#friend").remove();
         }
     }
 
-    function explosion1 (enemy1X,enemy1Y) {
+
+
+    function explosion1(enemy1X,enemy1Y) {
         $("#backgroundGame").append("<div id='explosion1'></div");
         $("#explosion1").css("background-image", "url(./assets/images/explosion.png)");
 
         var div = $("#explosion1");
         div.css(game.direcTopEnemy_1, enemy1Y);
         div.css(game.directionEnemy_1, enemy1X);
-        div.animate({width:200, opacity:0}, "slow");
-        
+        div.animate({width: 200, opacity: 0}, "slow");
+
         var explosionTime = window.setInterval(removeExplosion, 1000);
         function removeExplosion() {
             div.remove();
@@ -165,19 +209,64 @@ function start() {
             explosionTime = null;
         }
     }
+    function explosion2(enemy1X,enemy1Y) {
+        $("#backgroundGame").append("<div id='explosion2'></div");
+        $("#explosion2").css("background-image", "url(./assets/images/explosion.png)");
+        
+        var div2 = $("#explosion2");
+        div2.css(game.direcTopEnemy_2, enemy1Y);
+        div2.css(game.directionEnemy_2, enemy1X);
+        div2.animate({width:200, opacity:0}, "slow");
+        
+        var explosionTime2 = window.setInterval(removeExplosion2, 1000);
+        function removeExplosion2() {
+            div2.remove();
+            window.clearInterval(explosionTime2);
+            explosionTime2 = null;
+        }
+    }
+
+
+
+    function repositionEnemy2() {
+        var collisionTime4 = window.setInterval(reposition4, 5000);
+
+        function reposition4() {
+            window.clearInterval(collisionTime4);
+            collisionTime4 = null;
+
+            if (game.endOfTheGame === false) {
+                $("#backgroundGame").append("<div id=enemy2></div");
+            }
+        }
+    }
+
+	function repositionFriend() {
+        var friendTime = window.setInterval(reposition6, 6000);
+
+        function reposition6() {
+            window.clearInterval(friendTime);
+            friendTime = null;
+
+            if (game.endOfTheGame === false) {
+                $("#backgroundGame").append("<div id='friend' class='friendAnimationClass'></div>");
+            }
+        }
+    }
+
+
 
     function moveEnemy1() {
         game.enemyPositionX = parseInt($("#enemy1").css(game.positionEnemy_1));
         $("#enemy1").css(game.directionEnemy_1,game.enemyPositionX - game.enemyVelocity_1);
-        $("#enemy1").css("top",game.enemyPositionY);
+        $("#enemy1").css(game.direcTopEnemy_1, game.enemyPositionY);
         
         if (game.enemyPositionX <= game.limitPositionEnemy_1) {
             game.enemyPositionY = parseInt(Math.random() * game.enemyValueRandomPositionY);
             $("#enemy1").css(game.directionEnemy_1, game.resetPositionEnemy_1);
-            $("#enemy1").css("top",game.enemyPositionY);
+            $("#enemy1").css(game.direcTopEnemy_1, game.enemyPositionY);
         }
     }
-
     function moveEnemy2() {
         game.enemyPositionX = parseInt($("#enemy2").css(game.positionEnemy_2));
         $("#enemy2").css(game.directionEnemy_2, game.enemyPositionX - game.enemyVelocity_2);
@@ -186,6 +275,8 @@ function start() {
             $("#enemy2").css(game.directionEnemy_2, game.resetPositionEnemy_2);
         }
     }
+
+
 
 	function backgroundAnimation() {
         game.backgroundDirection = parseInt($("#backgroundGame").css("background-position"));
