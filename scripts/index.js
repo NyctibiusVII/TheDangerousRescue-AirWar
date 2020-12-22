@@ -18,6 +18,7 @@ function start() {
 
         currentEnergy: 3,
 
+        generalVelocityOfEnemies: 0.3,
         endOfTheGame: false,
         intervalLoop: 30,
         topLimit: 0,
@@ -184,7 +185,8 @@ function start() {
             repositionEnemy2();
         }
         if (collision_3.length > 0) {
-            game.scores =+ game.pointsForTheEnemy_1;
+            game.scores += game.pointsForTheEnemy_1;
+            game.enemyVelocity_1 += game.generalVelocityOfEnemies;
 
             enemy1X = parseInt($("#enemy1").css(game.directionEnemy_1));
             enemy1Y = parseInt($("#enemy1").css(game.direcTopEnemy_1));
@@ -197,7 +199,8 @@ function start() {
             $("#enemy1").css(game.direcTopEnemy_1, game.enemyPositionY);
         }
         if (collision_4.length > 0) {
-            game.scores =+ game.pointsForTheEnemy_2;
+            game.scores += game.pointsForTheEnemy_2;
+            game.enemyVelocity_2 += game.generalVelocityOfEnemies;
 
             enemy2X = parseInt($("#enemy2").css(game.directionEnemy_2));
             enemy2Y = parseInt($("#enemy2").css(game.direcTopEnemy_2));
