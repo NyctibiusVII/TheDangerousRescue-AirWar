@@ -96,40 +96,48 @@ h1 {
 #explosion1 {
 	width: 15px;
 	height: 87px;
+
 	position: absolute;
 }
 #explosion2 {
 	width: 15px;
 	height: 87px;
+
+	position: absolute;
+}
+#explosion3 {
+	width: 44px;
+	height: 51px;
+	
 	position: absolute;
 }
 
 /* Animation Helicopter */
 @keyframes helicopterAnimation {
-	from { background-position:0px;    }
-	  to { background-position:-512px; }
+	from { background-position:    0px; }
+	  to { background-position: -512px; }
 }
 @-webkit-keyframes helicopterAnimation {
-   	from { background-position:0px;     }
+   	from { background-position:    0px; }
    	  to { background-position: -512px; }
 }
 @-moz-keyframes helicopterAnimation {
-   	from { background-position:0px;     }
+   	from { background-position:    0px; }
    	  to { background-position: -512px; }
 }
 @-ms-keyframes helicopterAnimation {
-   	from { background-position:0px;     }
+   	from { background-position:    0px; }
    	  to { background-position: -512px; }
 }
 @-o-keyframes helicopterAnimation {
-   	from { background-position:0px;     }
+   	from { background-position:    0px; }
    	  to { background-position: -512px; }
 }
 
-/* Animation Friend */
+/* Animation Friend 1 */
 @keyframes friendAnimation {
-	from { background-position:0px;    }
-	  to { background-position:-528px; }
+	from { background-position:    0px; }
+	  to { background-position: -528px; }
 }
 @-webkit-keyframes friendAnimation {
    	from { background-position:    0px; }
@@ -147,6 +155,30 @@ h1 {
    	from { background-position:    0px; }
    	  to { background-position: -528px; }
 }
+
+/* Animation Friend 2 */
+@keyframes friendDeadAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -308px; }
+}
+@-webkit-keyframes friendDeadAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -308px; }
+}
+@-moz-keyframes friendDeadAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -308px; }
+}
+@-ms-keyframes friendDeadAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -308px; }
+}
+@-o-keyframes friendDeadAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -308px; }
+}
+
+
 
 .playerAnimationClass {
 	background-image: url(../assets/images/helicoptero.png);
@@ -171,4 +203,14 @@ h1 {
 	-moz-animation: friendAnimation .9s steps(12) infinite;
 	-ms-animation: friendAnimation .9s steps(12) infinite;
 	-o-animation: friendAnimation .9s steps(12) infinite;
+}
+.friendDeadAnimationClass {
+	width: 44px;
+	height: 51px;
+	background-image: url(../assets/images/friend_dead.png);
+	animation: friendDeadAnimation .5s steps(7) infinite;
+	-webkit-animation: friendDeadAnimation .5s steps(7) infinite;
+	-moz-animation: friendDeadAnimation .5s steps(7) infinite;
+	-ms-animation: friendDeadAnimation .5s steps(7) infinite;
+	-o-animation: friendDeadAnimation .5s steps(7) infinite;
 }

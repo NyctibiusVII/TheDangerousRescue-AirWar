@@ -19,6 +19,7 @@ function start() {
         positionFriend: "left",
         limitPositionFriend: 906,
         resetPositionFriend: 0,
+        direcTopFriend: "top",
         directionFriend: "left",
         friendVelocity: 1,
         // Enemy 1 //
@@ -189,11 +190,19 @@ function start() {
             repositionFriend();
             $("#friend").remove();
         }
+        if (collision_6.length > 0) {
+            friendX = parseInt($("#friend").css(game.directionFriend));
+            friendY = parseInt($("#friend").css(game.direcTopFriend));
+            explosion3(friendX, friendY);
+
+            $("#friend").remove();
+            repositionFriend();
+        }
     }
 
 
 
-    function explosion1(enemy1X,enemy1Y) {
+    function explosion1(enemy1X, enemy1Y) {
         $("#backgroundGame").append("<div id='explosion1'></div");
         $("#explosion1").css("background-image", "url(./assets/images/explosion.png)");
 
@@ -209,7 +218,7 @@ function start() {
             explosionTime = null;
         }
     }
-    function explosion2(enemy1X,enemy1Y) {
+    function explosion2(enemy1X, enemy1Y) {
         $("#backgroundGame").append("<div id='explosion2'></div");
         $("#explosion2").css("background-image", "url(./assets/images/explosion.png)");
         
@@ -225,7 +234,18 @@ function start() {
             explosionTime2 = null;
         }
     }
+    function explosion3(friendX, friendY) {
+        $("#backgroundGame").append("<div id='explosion3' class='friendDeadAnimationClass'></div");
+        $("#explosion3").css(game.directionFriend, friendX);
+        $("#explosion3").css(game.direcTopFriend, friendY);
 
+        var explosionTime3 = window.setInterval(resetExplosion3, 1000);
+        function resetExplosion3() {
+            $("#explosion3").remove();
+            window.clearInterval(explosionTime3);
+            explosionTime3 = null;
+        }
+    }
 
 
     function repositionEnemy2() {
