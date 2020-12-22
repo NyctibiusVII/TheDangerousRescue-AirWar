@@ -6,6 +6,7 @@ function start() {
 	$("#backgroundGame").append("<div id='enemy2'></div>");
 	$("#backgroundGame").append("<div id='friend' class='friendAnimationClass'></div>");
     $("#backgroundGame").append("<div id='scoreboard'></div>");
+    $("#backgroundGame").append("<div id='energy'></div>");
 
     var game = {
         scores: 0,
@@ -14,6 +15,9 @@ function start() {
 
         pointsForTheEnemy_1: 100,
         pointsForTheEnemy_2: 50,
+
+        currentEnergy: 3,
+
         endOfTheGame: false,
         intervalLoop: 30,
         topLimit: 0,
@@ -85,6 +89,7 @@ function start() {
         moveEnemy2();
 
         collision();
+        energy();
         scoreboard();
     }
 
@@ -158,6 +163,8 @@ function start() {
         var collision_6 = ($("#enemy2").collision($("#friend"))); // Elipóptero => Amigo        | 🚁X🏃🏻‍♂️
         
         if (collision_1.length > 0) {
+            game.currentEnergy--;
+
             enemy1X = parseInt($("#enemy1").css(game.directionEnemy_1));
             enemy1Y = parseInt($("#enemy1").css(game.direcTopEnemy_1));
             explosion1(enemy1X,enemy1Y);
@@ -167,6 +174,8 @@ function start() {
             $("#enemy1").css(game.direcTopEnemy_1, game.enemyPositionY);
         }
         if (collision_2.length > 0) {
+            game.currentEnergy--;
+
             enemy2X = parseInt($("#enemy2").css(game.directionEnemy_2));
             enemy2Y = parseInt($("#enemy2").css(game.direcTopEnemy_2));
             explosion2(enemy2X,enemy2Y);
@@ -316,6 +325,20 @@ function start() {
         $("#backgroundGame").css("background-position", game.backgroundDirection - game.velocityOfBackground);
     }
 
+    function energy() {
+		if (game.currentEnergy === 3) {
+			$("#energy").css("background-image", "url(./assets/images/energy3.png)");
+		}
+		if (game.currentEnergy === 2) {
+			$("#energy").css("background-image", "url(./assets/images/energy2.png)");
+		}
+		if (game.currentEnergy === 1) {
+			$("#energy").css("background-image", "url(./assets/images/energy1.png)");
+		}
+		if (game.currentEnergy === 0) {
+			$("#energy").css("background-image", "url(./assets/images/energy0.png)");
+		}
+	}
     function scoreboard() {
         $("#scoreboard").html("<h2> Pontos: " + game.scores + " Salvos: " + game.saved + " Perdidos: " + game.lost + "</h2>");
     }

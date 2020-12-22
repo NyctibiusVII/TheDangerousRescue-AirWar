@@ -46,6 +46,14 @@ h2 {
 	font-family:Titulo;
 	font-size:20px;
 }
+#energy {
+	width: 140px;
+	height: 38px;
+
+	left: 750px;
+	top: 7px;
+	position: absolute;
+}
 
 
 
