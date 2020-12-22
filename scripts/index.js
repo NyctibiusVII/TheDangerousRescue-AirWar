@@ -364,7 +364,7 @@ function start() {
 
 
     function gameOver() {
-        endOfTheGame = true;
+        game.endOfTheGame = true;
         music.pause();
         soundGameOver.play();
         
@@ -379,4 +379,9 @@ function start() {
         $("#backgroundGame").append("<div id='end'></div>");
         $("#end").html("<h1> Game Over </h1><p>Sua pontuação foi: " + game.scores + "</p>" + "<div id='restart' onClick=restartGame()><h3>Jogar Novamente</h3></div>");
     }
+}
+function restartGame() {
+    soundGameOver.pause();
+    $("#end").remove();
+    start();
 }
