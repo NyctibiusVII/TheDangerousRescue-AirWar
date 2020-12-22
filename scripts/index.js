@@ -354,9 +354,29 @@ function start() {
 		}
 		if (game.currentEnergy === 0) {
 			$("#energy").css("background-image", "url(./assets/images/energy0.png)");
-		}
+            gameOver();
+        }
 	}
     function scoreboard() {
         $("#scoreboard").html("<h2> Pontos: " + game.scores + " Salvos: " + game.saved + " Perdidos: " + game.lost + "</h2>");
+    }
+
+
+
+    function gameOver() {
+        endOfTheGame = true;
+        music.pause();
+        soundGameOver.play();
+        
+        window.clearInterval(game.timer);
+        game.timer = null;
+        
+        $("#player").remove();
+        $("#enemy1").remove();
+        $("#enemy2").remove();
+        $("#friend").remove();
+        
+        $("#backgroundGame").append("<div id='end'></div>");
+        $("#end").html("<h1> Game Over </h1><p>Sua pontuação foi: " + game.scores + "</p>" + "<div id='restart' onClick=restartGame()><h3>Jogar Novamente</h3></div>");
     }
 }
