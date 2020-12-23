@@ -146,7 +146,7 @@ function start() {
             game.playerPositionX = parseInt($("#player").css(game.leftPlayer))
             game.topShoot = topP + game.topAlignment;                            // Alinhando tiro com uma margem no top
             game.shootPositionX = game.playerPositionX + game.rightAlignment;    // Alinhando tiro a direita
-            $("#backgroundGame").append("<div id='shoot'></div");
+            $("#backgroundGame").append("<div id='shoot' class='shootAnimationClass'></div");
             $("#shoot").css(game.topPlayer, game.topShoot);
             $("#shoot").css(game.leftPlayer, game.shootPositionX);
 
@@ -241,15 +241,16 @@ function start() {
 
     function explosion1(enemy1X, enemy1Y) {
         explosionSound.play();
-        $("#backgroundGame").append("<div id='explosion1'></div");
-        $("#explosion1").css("background-image", "url(./assets/images/explosion.png)");
+        $("#backgroundGame").append(`
+        <div id='explosion1'>
+            <img src='./assets/images/explosion.gif' class='explosionGif' alt='explosão'>
+        </div`);
 
         var div = $("#explosion1");
         div.css(game.direcTopEnemy_1, enemy1Y);
         div.css(game.directionEnemy_1, enemy1X);
-        div.animate({width: 200, opacity: 0}, "slow");
 
-        var explosionTime = window.setInterval(removeExplosion, 1000);
+        var explosionTime = window.setInterval(removeExplosion, 500);
         function removeExplosion() {
             div.remove();
             window.clearInterval(explosionTime);
@@ -258,15 +259,16 @@ function start() {
     }
     function explosion2(enemy1X, enemy1Y) {
         explosionSound.play();
-        $("#backgroundGame").append("<div id='explosion2'></div");
-        $("#explosion2").css("background-image", "url(./assets/images/explosion.png)");
+        $("#backgroundGame").append(`
+        <div id='explosion2'>
+            <img src='./assets/images/explosion.gif' class='explosionGif' alt='explosão'>
+        </div`);
         
         var div2 = $("#explosion2");
         div2.css(game.direcTopEnemy_2, enemy1Y);
         div2.css(game.directionEnemy_2, enemy1X);
-        div2.animate({width:200, opacity:0}, "slow");
         
-        var explosionTime2 = window.setInterval(removeExplosion2, 1000);
+        var explosionTime2 = window.setInterval(removeExplosion2, 500);
         function removeExplosion2() {
             div2.remove();
             window.clearInterval(explosionTime2);
@@ -358,7 +360,8 @@ function start() {
         }
 	}
     function scoreboard() {
-        $("#scoreboard").html("<h2> Pontos: " + game.scores + " Salvos: " + game.saved + " Perdidos: " + game.lost + "</h2>");
+        var space = "&nbsp;&nbsp;&nbsp;"
+        $("#scoreboard").html(`<h2> Pontos: ${game.scores} ${space} Salvos: ${game.saved} ${space} Perdidos: ${game.lost} </h2>`);
     }
 
 
@@ -372,14 +375,26 @@ function start() {
         game.timer = null;
         
         $("#player").remove();
+        $("#friend").remove();
         $("#enemy1").remove();
         $("#enemy2").remove();
-        $("#friend").remove();
+        $("#explosion1").remove();
+        $("#explosion2").remove();
+        $("#shoot").remove();
         
         $("#backgroundGame").append("<div id='end'></div>");
-        $("#end").html("<h1> Game Over </h1><p>Sua pontuação foi: " + game.scores + "</p>" + "<div id='restart' onClick=restartGame()><h3>Jogar Novamente</h3></div>");
+        $("#end").html(`
+        <div id='separate'>
+            <h1>Game Over</h1>
+            <p>Sua pontuação foi: ${game.scores} </p>
+            <div id='restart' onClick='restartGame()'>
+                <h3>Jogar Novamente</h3>
+            </div>
+        </div>`
+        );
     }
 }
+
 function restartGame() {
     soundGameOver.pause();
     $("#end").remove();

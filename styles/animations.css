@@ -1,0 +1,135 @@
+/* Animation shoot */
+@keyframes shootAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -100px; }
+}
+@-webkit-keyframes shootAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -100px; }
+}
+@-moz-keyframes shootAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -100px; }
+}
+@-ms-keyframes shootAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -100px; }
+}
+@-o-keyframes shootAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -100px; }
+}
+.shootAnimationClass {
+	background-image: url(../assets/images/shoot.png);
+	animation: shootAnimation .5s steps(2) infinite;
+	-webkit-animation: shootAnimation .5s steps(2) infinite;
+	-moz-animation: shootAnimation .5s steps(2) infinite;
+	-ms-animation: shootAnimation .5s steps(2) infinite;
+	-o-animation: shootAnimation .5s steps(2) infinite;
+}
+
+
+
+/* Animation Helicopter */
+@keyframes helicopterAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -512px; }
+}
+@-webkit-keyframes helicopterAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -512px; }
+}
+@-moz-keyframes helicopterAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -512px; }
+}
+@-ms-keyframes helicopterAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -512px; }
+}
+@-o-keyframes helicopterAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -512px; }
+}
+.playerAnimationClass {
+	background-image: url(../assets/images/player.png);
+	animation: helicopterAnimation .5s steps(2) infinite;
+	-webkit-animation: helicopterAnimation .5s steps(2) infinite;
+	-moz-animation: helicopterAnimation .5s steps(2) infinite;
+	-ms-animation: helicopterAnimation .5s steps(2) infinite;
+	-o-animation: helicopterAnimation .5s steps(2) infinite;
+}
+.enemy1AnimationClass {
+    background-image:url(../assets/images/enemy1.png);
+    animation: helicopterAnimation .5s steps(2) infinite;
+    -webkit-animation: helicopterAnimation .5s steps(2) infinite;
+    -moz-animation: helicopterAnimation .5s steps(2) infinite;
+    -ms-animation: helicopterAnimation .5s steps(2) infinite;
+    -o-animation: helicopterAnimation .5s steps(2) infinite;
+}
+
+
+
+/* Animation Friend */
+@keyframes friendAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -528px; }
+}
+@-webkit-keyframes friendAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -528px; }
+}
+@-moz-keyframes friendAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -528px; }
+}
+@-ms-keyframes friendAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -528px; }
+}
+@-o-keyframes friendAnimation {
+   	from { background-position:    0px; }
+   	  to { background-position: -528px; }
+}
+.friendAnimationClass {
+	background-image:url(../assets/images/friend.png);
+	animation: friendAnimation .9s steps(12) infinite;
+	-webkit-animation: friendAnimation .9s steps(12) infinite;
+	-moz-animation: friendAnimation .9s steps(12) infinite;
+	-ms-animation: friendAnimation .9s steps(12) infinite;
+	-o-animation: friendAnimation .9s steps(12) infinite;
+}
+
+
+
+/* Animation Friend Dead */
+@keyframes friendDeadAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -308px; }
+}
+@-webkit-keyframes friendDeadAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -308px; }
+}
+@-moz-keyframes friendDeadAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -308px; }
+}
+@-ms-keyframes friendDeadAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -308px; }
+}
+@-o-keyframes friendDeadAnimation {
+	from { background-position:    0px; }
+	  to { background-position: -308px; }
+}
+.friendDeadAnimationClass {
+	width: 44px;
+	height: 51px;
+	background-image: url(../assets/images/friend_dead.png);
+	animation: friendDeadAnimation .5s steps(7) infinite;
+	-webkit-animation: friendDeadAnimation .5s steps(7) infinite;
+	-moz-animation: friendDeadAnimation .5s steps(7) infinite;
+	-ms-animation: friendDeadAnimation .5s steps(7) infinite;
+	-o-animation: friendDeadAnimation .5s steps(7) infinite;
+}

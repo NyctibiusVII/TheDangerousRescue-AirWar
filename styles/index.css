@@ -1,79 +1,61 @@
 @font-face {
-	font-family:Anodetonoone;
-	src: url(./fonts/Anodetonoone.ttf);
+	font-family: BungeeRegular;
+	src: url(./fonts/BungeeRegular/Bungee-Regular.ttf);
 }
-
-
-
+@font-face {
+	font-family: Jost;
+	src: url(./fonts/Jost/Jost.ttf);
+}
 body {
-	background-image: url(../assets/images/background.jpg);
+	font: 400 1.8rem/1 'Jost', sans-serif;
 }
-
-
-
-#container{
-	width: 950px;
-	height: auto;
-	
-    position: relative;
-	margin-left: auto;
-	margin-right: auto;
+h1, h2, h3 {
+    color:var(--primary-color);
+	font-family: BungeeRegular;
 }
-#backgroundGame {
-	width: 950px;
-	height: 630px;
-	
-	background-image: url(../assets/images/background_game.jpg);
-	border-color:#fff;
-	border-style: solid;
-}
-h1 {
-    color:#603A03;
-	font-family: Anodetonoone;
-}
-#scoreboard {
-	width: 450px;
-	height: 50px;
-
-	left: 5px;
-	top: 590px;
-	position: absolute;
-}
-
 h2 {
-	color: #FFF;
-	font-family: Anodetonoone;
-	font-size: 20px;
+	color: var(--primary-reverse-color);
 }
-#energy {
-	width: 140px;
-	height: 38px;
+p {
+	margin-top: 5px;
+}
+p:last-child {
+	margin-top: 7px;
+}
 
-	left: 750px;
-	top: 7px;
-	position: absolute;
-}
-h3 {
-	color: #603A03;
-	font-family: Anodetonoone;
-	font-size: 20px;
+
+
+/* start / end */
+#startGame {
+	width: 350px;
+    height: 200px;
+    
+    background-color: rgba(255, 255, 255, 0.7);
+	
+    text-align: center;
+	padding: 10px;
+	margin: 200px auto 0;
+	flex-wrap: wrap;
+	
+	cursor: pointer;
 }
 #end {
 	width: 350px;
 	height: 200px;
 
-	background-color:#FFF;
+	background-color: rgba(255, 255, 255, 0.7);
 
 	text-align: center;
 	padding: 10px;
-	margin-top: 100px;
-	margin-right: auto;
-	margin-left: auto;
+	margin: 200px auto 0;
+	flex-wrap: wrap;
+
+	cursor: pointer;
 }
 
 
 
-/* Player */
+/* Player & Entities */
 #player {
 	width: 256px;
     height: 66px;
@@ -82,27 +64,7 @@ h3 {
 	left: 8px;
     top: 179px;
     
-    background-image:url(../assets/images/apache.png);
-}
-#enemy1 {
-	width: 256px;
-    height: 66px;
-    
-	position: absolute;
-	left: 689px;
-    top: 253px;
-    
-	background-image:url(../assets/images/enemy1.png);
-}
-#enemy2 {
-	width: 165px;
-    height: 70px;
-    
-	position: absolute;
-	left: 775px;
-    top: 447px;
-    
-	background-image: url(../assets/images/enemy2.png);
+    background-image: url(../assets/images/player.png);
 }
 #friend {
 	width: 44px;
@@ -114,15 +76,53 @@ h3 {
     
 	background-image: url(../assets/images/friend.png);
 }
-#startGame {
-	width: 350px;
-    height: 200px;
+#enemy1 {
+	width: 256px;
+    height: 66px;
     
-    background-color:#FFF;
+	position: absolute;
+	left: 689px;
+    top: 253px;
+    
+	background-image: url(../assets/images/enemy1.png);
+}
+#enemy2 {
+	width: 165px;
+	height: 70px;
+	
+	position: absolute;
+	left: 775px;
+	top: 447px;
+	
+	background-image: url(../assets/images/enemy2.png);
+}
 
-    text-align: center;
-    margin: 100px auto 0;
-	padding: 10px;
+
+
+#separate {
+	width: 100%;
+    height: 100%;
+	
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: space-evenly;
+}
+#scoreboard {
+	width: 100%;
+	height: 50px;
+
+	left: 30px;
+	top: 580px;
+	position: absolute;
+}
+#energy {
+	width: 140px;
+	height: 38px;
+
+	left: 750px;
+	top: 7px;
+	position: absolute;
 }
 #shoot {
 	width: 50px;
@@ -131,15 +131,14 @@ h3 {
 	position: absolute;
 	background-image: url(../assets/images/shoot.png);
 }
-#explosion1 {
-	width: 15px;
-	height: 87px;
 
-	position: absolute;
-}
+
+
+/* Explosions */
+#explosion1,
 #explosion2 {
-	width: 15px;
-	height: 87px;
+	width: min-content;
+	height: min-content;
 
 	position: absolute;
 }
@@ -149,106 +148,21 @@ h3 {
 
 	position: absolute;
 }
-
-/* Animation Helicopter */
-@keyframes helicopterAnimation {
-	from { background-position:    0px; }
-	  to { background-position: -512px; }
-}
-@-webkit-keyframes helicopterAnimation {
-   	from { background-position:    0px; }
-   	  to { background-position: -512px; }
-}
-@-moz-keyframes helicopterAnimation {
-   	from { background-position:    0px; }
-   	  to { background-position: -512px; }
-}
-@-ms-keyframes helicopterAnimation {
-   	from { background-position:    0px; }
-   	  to { background-position: -512px; }
-}
-@-o-keyframes helicopterAnimation {
-   	from { background-position:    0px; }
-   	  to { background-position: -512px; }
-}
-
-/* Animation Friend 1 */
-@keyframes friendAnimation {
-	from { background-position:    0px; }
-	  to { background-position: -528px; }
-}
-@-webkit-keyframes friendAnimation {
-   	from { background-position:    0px; }
-   	  to { background-position: -528px; }
-}
-@-moz-keyframes friendAnimation {
-   	from { background-position:    0px; }
-   	  to { background-position: -528px; }
-}
-@-ms-keyframes friendAnimation {
-   	from { background-position:    0px; }
-   	  to { background-position: -528px; }
-}
-@-o-keyframes friendAnimation {
-   	from { background-position:    0px; }
-   	  to { background-position: -528px; }
-}
-
-/* Animation Friend 2 */
-@keyframes friendDeadAnimation {
-	from { background-position:    0px; }
-	  to { background-position: -308px; }
-}
-@-webkit-keyframes friendDeadAnimation {
-	from { background-position:    0px; }
-	  to { background-position: -308px; }
-}
-@-moz-keyframes friendDeadAnimation {
-	from { background-position:    0px; }
-	  to { background-position: -308px; }
-}
-@-ms-keyframes friendDeadAnimation {
-	from { background-position:    0px; }
-	  to { background-position: -308px; }
-}
-@-o-keyframes friendDeadAnimation {
-	from { background-position:    0px; }
-	  to { background-position: -308px; }
+.explosionGif {
+	width: 150px;
+	height: 150px;
 }
 
 
 
-.playerAnimationClass {
-	background-image: url(../assets/images/helicoptero.png);
-	animation: helicopterAnimation .5s steps(2) infinite;
-	-webkit-animation: helicopterAnimation .5s steps(2) infinite;
-	-moz-animation: helicopterAnimation .5s steps(2) infinite;
-	-ms-animation: helicopterAnimation .5s steps(2) infinite;
-	-o-animation: helicopterAnimation .5s steps(2) infinite;
-}
-.enemy1AnimationClass {
-    background-image:url(../assets/images/enemy1.png);
-    animation: helicopterAnimation .5s steps(2) infinite;
-    -webkit-animation: helicopterAnimation .5s steps(2) infinite;
-    -moz-animation: helicopterAnimation .5s steps(2) infinite;
-    -ms-animation: helicopterAnimation .5s steps(2) infinite;
-    -o-animation: helicopterAnimation .5s steps(2) infinite;
-}
-.friendAnimationClass {
-	background-image:url(../assets/images/friend.png);
-	animation: friendAnimation .9s steps(12) infinite;
-	-webkit-animation: friendAnimation .9s steps(12) infinite;
-	-moz-animation: friendAnimation .9s steps(12) infinite;
-	-ms-animation: friendAnimation .9s steps(12) infinite;
-	-o-animation: friendAnimation .9s steps(12) infinite;
-}
-.friendDeadAnimationClass {
-	width: 44px;
-	height: 51px;
-	background-image: url(../assets/images/friend_dead.png);
-	animation: friendDeadAnimation .5s steps(7) infinite;
-	-webkit-animation: friendDeadAnimation .5s steps(7) infinite;
-	-moz-animation: friendDeadAnimation .5s steps(7) infinite;
-	-ms-animation: friendDeadAnimation .5s steps(7) infinite;
-	-o-animation: friendDeadAnimation .5s steps(7) infinite;
+/* Collision visualization */
+#player,
+#friend,
+#enemy1,
+#enemy2,
+#shoot,
+#explosion1,
+#explosion2,
+#explosion3 {
+	border: 1px solid #ff6600;
 }

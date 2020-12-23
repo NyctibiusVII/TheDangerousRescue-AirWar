@@ -1,0 +1,40 @@
+:root {
+    font-size: 62.5%;
+
+    /* Colors */
+    --primary-color: #000;
+    --secondary-color: #272727;
+
+    --primary-reverse-color: #eeeeee;
+}
+/* ----------------------General(standard)-------------------- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+body {
+  color: var(--secondary-color);
+  background-image: url(../assets/images/background.png);
+}
+body, html {
+  width: 100vw;
+  height: 100vh;
+}
+
+
+
+#container {
+	width: 950px;
+	height: auto;
+	
+    position: relative;
+    margin: 0 auto;
+}
+#backgroundGame {
+	width: 950px;
+	height: 630px;
+	
+    background-image: url(../assets/images/background_game.jpg);
+    border: 1px solid #000;
+}
