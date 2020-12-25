@@ -13,7 +13,7 @@
   </a>
 </p>
 <p align="center">
-  <a href="#TheDangerousRescue-AirWar-">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#thedangerousrescue-airwar-%EF%B8%8F">Projeto</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#tecnologias-">Tecnologias</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#layout-">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#licença-%EF%B8%8F">Licença</a>
@@ -51,7 +51,7 @@ Esse projeto foi desenvolvido com as seguintes tecnologias:
 
 ### Como jogar? 🕹
 Você controla um helicóptero e seu objetivo é salvar seu parceiro e ganhar o máximo de pontos possíveis ô salvando e destruindo os inimigos pela frente.
-*Conforme voce vai avançando a dificuldade aumenta!*
+*Conforme você vai avançando a dificuldade aumenta!*
 
 #### Requisitos 😦
 <!-- - Ter um dispositivo com o tamanho **minimo** de 950 x 630-->
@@ -107,7 +107,7 @@ $ cd TheDangerousRescue
 <img src="./.github/bug-001.0.png" width="400px">
 <img src="./.github/bug-001.1.png" width="400px">
 
-*Por enquanto a resolução para esse problema é recarregar a pagina caso não saia automaticamente quando voce reiniciar o jogo.*
+*Por enquanto a resolução para esse problema é recarregar a pagina caso não saia automaticamente quando você reiniciar o jogo.*
 
 ### OBS 👀
 Esse projeto esta aqui para você brincar, aprender e modificar ao seu estilo gamer/programador. É um projeto pequeno mas ainda sim é ótimo para quem é iniciante começar a fuçar e modificar as coisas. Diverta-se 🎮
