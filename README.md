@@ -131,4 +131,4 @@ Este projeto está sob a licença do MIT. Veja o arquivo [LICENSE](https://githu
    <a href="https://mail.google.com/mail/u/1/#inbox?compose=GTvVlcSGLCKpKJfwPsKKqzXBplKkGtCLvCQcFWdWxCxQFfkHzzjVkgzrMFPBgKBmWFHvrjrCsMqSH">
       <img alt="Matheus Vidigal / Linkedin" src="https://img.shields.io/badge/-Matheus Vidigal-ff3900?style=flat&logo=Gmail&logoColor=fff" />
    </a>
-</p>(°ー°〃)
+</p>
