@@ -100,11 +100,14 @@ $ cd TheDangerousRescue
 ```
 
 ### BUG 🐞
+**Bug visual**
+
 1 Bug conhecido: Quando você atira ao mesmo tempo que seu helicóptero esta colidindo com o inimigo(frente a frente), a animação da explosão 'buga' e fica um sprite infinito na sua tela.
 
-//imagem
+<img src="./.github/bug-001.0.png" width="400px">
+<img src="./.github/bug-001.1.png" width="400px">
 
-*Por enquanto a resolução para esse problema é recarregar a pagina.*
+*Por enquanto a resolução para esse problema é recarregar a pagina caso não saia automaticamente quando voce reiniciar o jogo.*
 
 ### OBS 👀
 Esse projeto esta aqui para você brincar, aprender e modificar ao seu estilo gamer/programador. É um projeto pequeno mas ainda sim é ótimo para quem é iniciante começar a fuçar e modificar as coisas. Diverta-se 🎮
